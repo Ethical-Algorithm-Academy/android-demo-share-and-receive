@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/share_container"
+    tools:context="eu.jobernas.demoshareapp.ShareFragment">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/share_with_native_share_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/lb_share_with_via"
+        android:textSize="18sp"
+        android:minHeight="60dp"
+        app:layout_constraintBottom_toTopOf="@id/share_with_native_share_to_target_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/share_with_native_share_to_target_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/lb_share_with_via_to_target"
+        android:textSize="18sp"
+        android:minHeight="60dp"
+        app:layout_constraintBottom_toTopOf="@id/share_with_universal_link_button"
+        app:layout_constraintEnd_toEndOf="@id/share_with_native_share_button"
+        app:layout_constraintStart_toStartOf="@id/share_with_native_share_button"
+        app:layout_constraintTop_toBottomOf="@id/share_with_native_share_button" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/share_with_universal_link_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/lb_share_with_universal_link"
+        android:textSize="18sp"
+        android:minHeight="60dp"
+        app:layout_constraintBottom_toTopOf="@id/share_with_clip_board_button"
+        app:layout_constraintEnd_toEndOf="@id/share_with_native_share_button"
+        app:layout_constraintStart_toStartOf="@id/share_with_native_share_button"
+        app:layout_constraintTop_toBottomOf="@id/share_with_native_share_to_target_button" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/share_with_clip_board_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="32dp"
+        android:textSize="18sp"
+        android:minHeight="60dp"
+        android:text="@string/lb_share_with_clip_board"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/share_with_native_share_button"
+        app:layout_constraintStart_toStartOf="@id/share_with_native_share_button"
+        app:layout_constraintTop_toBottomOf="@id/share_with_universal_link_button" />
+</androidx.constraintlayout.widget.ConstraintLayout>

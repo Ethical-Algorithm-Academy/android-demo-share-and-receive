@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Demo Share App</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="lb_dismiss">Dismiss</string>
+    <string name="lb_image_copied">Image Copied</string>
+    <string name="lb_share_fragment">Share Image</string>
+    <string name="lb_share_with_universal_link">Share with Universal Link</string>
+    <string name="lb_share_with_via">Share with Via</string>
+    <string name="lb_share_with_via_to_target">Share directly with Demo Receive App</string>
+    <string name="lb_share_with_clip_board">Share with Clip Board</string>
+</resources>

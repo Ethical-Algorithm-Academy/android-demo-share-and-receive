@@ -1,0 +1,53 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    compileSdk compileSDKVersion
+    namespace 'eu.jobernas.demoreceiveapp'
+
+    defaultConfig {
+        applicationId 'eu.jobernas.demoreceiveapp'
+        minSdk minSDKVersion
+        targetSdk targetSDKVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner testInstrumentationRunnerValue
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility sourceCompatibilityValue
+        targetCompatibility sourceCompatibilityValue
+    }
+    kotlinOptions {
+        jvmTarget = sourceCompatibilityValue.toString()
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation "androidx.core:core-ktx:$androidXCoreVersion"
+    implementation "androidx.appcompat:appcompat:$androidXAppCompatVersion"
+    implementation "com.google.android.material:material:$materialVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$androidXConstraintVersion"
+    implementation "androidx.navigation:navigation-fragment-ktx:$androidXNavigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$androidXNavigationVersion"
+
+    // Android Extensions Module
+    implementation "com.github.jobernas:Android-Extensions:$jobernasAndroidExtensionsVersion"
+
+    // Testing
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidXJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidXEspressoVersion"
+}

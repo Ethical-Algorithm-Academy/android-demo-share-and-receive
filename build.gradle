@@ -1,0 +1,37 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext {
+        //
+        compileSDKVersion = 33
+        targetSDKVersion = 33
+        minSDKVersion = 24
+
+        testInstrumentationRunnerValue = "androidx.test.runner.AndroidJUnitRunner"
+        sourceCompatibilityValue = JavaVersion.VERSION_11
+
+        // Libs Version
+        androidXCoreVersion = '1.9.0'
+        androidXAppCompatVersion = '1.5.1'
+        androidXConstraintVersion = '2.1.4'
+        androidXNavigationVersion = '2.5.3'
+        materialVersion = '1.7.0'
+
+        //
+        jobernasAndroidExtensionsVersion = '1.0.8'
+
+        //
+        junitVersion = '4.13.2'
+        androidXJunitVersion = '1.1.4'
+        androidXEspressoVersion = '3.5.0'
+    }
+}
+
+plugins {
+    id 'com.android.application' version '7.2.2' apply false
+    id 'com.android.library' version '7.2.2' apply false
+    id 'org.jetbrains.kotlin.android' version '1.7.10' apply false
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
