@@ -1,11 +1,13 @@
 package eu.jobernas.demoreceiveapp
 
+import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Parcelable
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import eu.jobernas.androidextensions.convertToImageJPEG
@@ -33,11 +35,19 @@ class MainViewModel: ViewModel(),
                     handleSendText(intent) // Handle text being sent
                 } else if (intent.type?.startsWith("image/") == true) {
                     handleSendImage(intent) // Handle single image being sent
+                    val name = intent.getStringExtra("Name")
+                    val age = intent.getIntExtra("Age", 0)
+                    val nationality = intent.getStringExtra("Nationality")
+                    Log.d(TAG, "name: $name, age: $age, nationality: $nationality")
                 }
             }
             Intent.ACTION_SEND_MULTIPLE -> {
                 if (intent.type?.startsWith("image/") == true)
                     handleSendMultipleImages(intent) // Handle multiple images being sent
+                val name = intent.getStringExtra("Name")
+                val age = intent.getStringExtra("Age")
+                val nationality = intent.getStringExtra("Nationality")
+                Log.d(TAG, "name: $name, age: $age, nationality: $nationality")
             }
             Intent.ACTION_VIEW -> {
                 // Add Schema here
@@ -103,12 +113,18 @@ class MainViewModel: ViewModel(),
     }
 
     override fun onClick(v: View?) {
+        val context = v?.context
         when(v?.id) {
             R.id.demo_receive_button -> {
-                val imageUri = v.context?.pastImageFromClipboard()
-                Log.d(TAG, "Image in Clipboard: ${imageUri?.path}")
-                if (imageUri != null)
-                    onImageReceived.postValue(imageUri)
+                try {
+                    val imageUri = context?.pastImageFromClipboard()
+                    Log.d(TAG, "Image in Clipboard: ${imageUri?.path}")
+                    if (imageUri != null)
+                        onImageReceived.postValue(imageUri)
+                } catch (t: Throwable) {
+                    Log.e(TAG, "Error", t)
+                    Toast.makeText(context, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

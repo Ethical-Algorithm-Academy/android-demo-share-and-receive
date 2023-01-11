@@ -17,7 +17,7 @@ buildscript {
         materialVersion = '1.7.0'
 
         //
-        jobernasAndroidExtensionsVersion = '1.0.8'
+        jobernasAndroidExtensionsVersion = '1.0.9'
 
         //
         junitVersion = '4.13.2'

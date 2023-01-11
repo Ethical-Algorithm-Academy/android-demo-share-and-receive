@@ -12,6 +12,8 @@ import androidx.lifecycle.ViewModel
 import eu.jobernas.androidextensions.convertToJpegStringBase64
 import eu.jobernas.androidextensions.copyToClipboard
 import eu.jobernas.androidextensions.createTemporaryImage
+import java.io.File
+
 
 /**
  * Share view model
@@ -44,7 +46,7 @@ class ShareViewModel: ViewModel(),
      */
     private fun shareVia(context: Context?, bitmap: Bitmap) {
         val contextNotNull = context ?: return
-        val stream = bitmap.createTemporaryImage(contextNotNull, "jpg", "images")
+        val stream = bitmap.createTemporaryImage(contextNotNull, File(context.cacheDir, "images"), "jpg")
         Log.d(TAG, "Stream is: $stream")
         ShareCompat.IntentBuilder(contextNotNull)
             .setSubject("Demo Share App")
@@ -63,10 +65,14 @@ class ShareViewModel: ViewModel(),
      */
     private fun shareViaToDemoReceiveApp(context: Context?, bitmap: Bitmap) {
         val contextNotNull = context ?: return
-        val streamUri = bitmap.createTemporaryImage(contextNotNull, "jpg", "images")
+        val streamUri = bitmap.createTemporaryImage(contextNotNull, File(context.cacheDir, "images"), "jpg")
         val sharingIntent = Intent(Intent.ACTION_SEND).apply {
             setClassName("eu.jobernas.demoreceiveapp","eu.jobernas.demoreceiveapp.MainActivity")
             putExtra(Intent.EXTRA_STREAM, streamUri)
+            putExtra("Name", "Joao")
+            putExtra("Age", 21)
+            putExtra("Nationality", "Portugal")
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK
             type = "image/jpeg"
         }
         contextNotNull.startActivity(sharingIntent)
@@ -102,9 +108,8 @@ class ShareViewModel: ViewModel(),
      */
     private fun shareClipboard(context: Context?, bitmap: Bitmap) {
         val contextNotNull = context ?: return
-        bitmap.copyToClipboard(contextNotNull, "jpg", "images")
+        bitmap.copyToClipboard(contextNotNull, File(contextNotNull.cacheDir, "images"),"jpg", "image")
         // Give Feedback to the User
         Toast.makeText(contextNotNull, R.string.lb_image_copied, Toast.LENGTH_SHORT).show()
     }
-
 }
